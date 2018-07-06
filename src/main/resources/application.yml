@@ -1,11 +1,11 @@
 app:
-  name: springboot-jwt-demo
+  name: user-service
 
 jwt:
   header: Authorization
   expires_in: 300 # 5 minutes
   mobile_expires_in: 600 # 10 minutes
-  secret: queenvictoria
+  secret: teacherhelper
 
 spring:
   datasource:
@@ -19,10 +19,18 @@ spring:
     min-idle: 15
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLInnoDBDialect
-        format_sql: true
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: false
+        show_sql: true
         id:
           new_generator_mappings: false
+
+# expose all endpoints
+management.endpoints.web.exposure.include: "*"
+
+spring.jackson.serialization.fail-on-empty-beans: false
+
+#spring.mobile.devicedelegatingviewresolver.enabled: true
